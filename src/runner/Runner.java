@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Runner {
 
     /**
-     * Add some student to DBs
+     * Add some student to DB
      *
      * @param args
      */
@@ -16,14 +16,13 @@ public class Runner {
         StudentPedin studentPedin = new StudentPedin();
 
         // Imagine that GUI opens
-
         studentPedin.openGui();
 
         // Parse data
-        ArrayList<String> student = studentPedin.getArrayListFromFile("c:\\Users\\AlexD\\IdeaProjects\\Lesson04OOPhw\\src\\MSSQL-DB.txt");
+        ArrayList<String> student = studentPedin.getArrayListFromFile("src/MSSQL-DB.txt");
         System.out.println(student);
 
-        //Verify and write data
-        if (studentPedin.isStudentOk(student)) studentPedin.writeToDb(student);
+        // Write data
+        studentPedin.writeToDb(student);
     }
 }

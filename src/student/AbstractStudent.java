@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public abstract class AbstractStudent {
 
@@ -46,17 +47,20 @@ public abstract class AbstractStudent {
     }
 
     /**
-     * Verify ArrayList with student is OK
+     * Verify if ArrayList with student is OK
      *
-     * @param Arraylist
+     * @param list
      * @return true/false
      */
-    public boolean isStudentOk(ArrayList<String> list) {
-        if (list.get(0).length() > 0
-                && list.get(1).length() > 0
+    public boolean isStudentOk(List<String> list) {
+        String nameSurnameRegExpString = "^[a-zA-Z'-]+$";
+        String maleFemaleRegExpString = "^(male|female)$";
+        if (Pattern.compile(nameSurnameRegExpString).matcher(list.get(0)).find()
+                && Pattern.compile(nameSurnameRegExpString).matcher(list.get(1)).find()
                 && Integer.parseInt(list.get(2)) > 16
                 && Integer.parseInt(list.get(2)) < 26
-                && (list.get(3) == "male" || list.get(3) == "female")) {
+                && Pattern.compile(maleFemaleRegExpString).matcher(list.get(3).toLowerCase()).find())
+        {
             System.out.println("Student is OK");
             return true;
         }

@@ -6,9 +6,10 @@ public interface ParseFileInterface {
     //В пекедж с интерфейсами добавляем новый интерфейс ParseFileInterface с методом который принимает параметр строку pathToFile и возвращает ArrayList.
 
     /**
-     * Gets Array List from file
+     * Adds each line from text file to Array List
+     *
      * @param pathToFile
-     * @return Array List
+     * @return ArrayList<String>
      */
     ArrayList<String> getArrayListFromFile(String pathToFile);
 }

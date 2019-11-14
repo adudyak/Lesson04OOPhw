@@ -9,6 +9,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class StudentPedin extends Student implements ParseFileInterface, WriteToDbInterface {
+    /**
+     * Parses file to ArrayList<String>
+     *
+     * @param pathToFile
+     * @return ArrayList
+     */
     @Override
     public ArrayList<String> getArrayListFromFile(String pathToFile) {
         ArrayList<String> arrayList = new ArrayList<>();
@@ -25,9 +31,15 @@ public class StudentPedin extends Student implements ParseFileInterface, WriteTo
         return arrayList;
     }
 
-
+    /**
+     * Write student data to database if student is OK
+     *
+     * @param data in List
+     */
     @Override
     public void writeToDb(List<String> data) {
-        System.out.println("Written to DB!");
+        if (isStudentOk(data))
+            System.out.println("Written to DB!");
+        else System.out.println("NOT written to DB!");
     }
 }
