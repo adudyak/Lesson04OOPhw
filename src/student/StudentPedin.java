@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class StudentPedin extends Student implements ParseFileInterface, WriteToDbInterface {
+    private FileWriter fileWriter;
+    private PrintWriter printWriter;
+
     /**
      * Parses file to ArrayList<String>
      *
@@ -32,14 +35,43 @@ public class StudentPedin extends Student implements ParseFileInterface, WriteTo
     }
 
     /**
+     * Open connection to MSSQL DB
+     */
+    private void openConnectionToDb() throws IOException {
+        String path = "src/MSSQL-DB.txt";
+        fileWriter = new FileWriter(path);
+        printWriter = new PrintWriter(fileWriter);
+    }
+
+    /**
      * Write student data to database if student is OK
      *
      * @param data in List
      */
     @Override
     public void writeToDb(List<String> data) {
-        if (isStudentOk(data))
-            System.out.println("Written to DB!");
-        else System.out.println("NOT written to DB!");
+        try {
+            openConnectionToDb();
+            if (isStudentOk(data)) {
+                for (String datum : data) {
+                    printWriter.println(getDate() + " - " + datum);
+                }
+                System.out.println("Written to DB!");
+                closeConnectionToDb();
+            } else System.out.println("NOT written to DB!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Close connection to MSSQL db
+     *
+     * @throws IOException
+     */
+    private void closeConnectionToDb() throws IOException {
+        printWriter.close();
+        fileWriter.close();
+        System.out.println("Close connection to MSSQL DB");
     }
 }

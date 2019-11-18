@@ -38,7 +38,7 @@ public class StudentNki extends Student implements WriteToDbInterface {
      * Open connection to MySQL DB
      */
     private void openConnectionToDb() throws IOException {
-        String path = "c:\\Users\\AlexD\\IdeaProjects\\Lesson04OOPhw\\src\\MSSQL-DB.txt";
+        String path = "src/MySQL-DB.txt";
         fileWriter = new FileWriter(path);
         printWriter = new PrintWriter(fileWriter);
     }

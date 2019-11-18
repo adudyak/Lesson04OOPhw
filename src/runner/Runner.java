@@ -19,7 +19,7 @@ public class Runner {
         studentPedin.openGui();
 
         // Parse data
-        ArrayList<String> student = studentPedin.getArrayListFromFile("src/MSSQL-DB.txt");
+        ArrayList<String> student = studentPedin.getArrayListFromFile("src/source.txt");
         System.out.println(student);
 
         // Write data
